@@ -1,0 +1,25 @@
+// Define font path variable
+$font-path: "./fonts";
+
+// Mixin for @font-face declaration
+@mixin font-face($name, $filename, $weight: normal, $style: normal) {
+  @font-face {
+    font-family: $name;
+    src: url("#{$font-path}/#{$filename}.eot");
+    src: local("#{$name}"), local("#{$filename}"),
+         url("#{$font-path}/#{$filename}.eot?#iefix") format("embedded-opentype"),
+         url("#{$font-path}/#{$filename}.woff2") format("woff2"),
+         url("#{$font-path}/#{$filename}.woff") format("woff"),
+         url("#{$font-path}/#{$filename}.ttf") format("truetype");
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+
+// Apply the mixin for each font variation
+@include font-face("Folty Book", "Folty-Book");
+@include font-face("Folty", "Folty-Light", 300);
+@include font-face("Folty", "Folty-Medium", 500);
+@include font-face("Folty", "Folty-Bold", bold);
+@include font-face("Folty", "Folty-SemiBold", 600);
+@include font-face("Folty", "Folty-Thin", 100);

@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card type should render 1`] = `
+<div>
+  <div
+    class="flex flex-row rounded gap-1 px-1.5 items-center py-1 min-w-max bg-white text-black"
+  >
+    <svg
+      aria-hidden="true"
+      class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-120dh41-MuiSvgIcon-root"
+      data-testid="ArticleOutlinedIcon"
+      focusable="false"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M19 5v14H5V5zm0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2"
+      />
+      <path
+        d="M14 17H7v-2h7zm3-4H7v-2h10zm0-4H7V7h10z"
+      />
+    </svg>
+    <p
+      class="lg:text-sm xl:text-base text-base"
+    >
+      article
+    </p>
+  </div>
+</div>
+`;

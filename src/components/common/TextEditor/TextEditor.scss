@@ -1,0 +1,211 @@
+.textEditor {
+  border-radius: 5px;
+  border: 1px solid #C4C4C4;
+  overflow-y: auto;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  max-height: 40vh;
+}
+
+.textEditor:hover{
+  border: 1px solid black;
+}
+
+.menuBar {
+  padding-bottom: 5px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #fff;
+  box-sizing: border-box;
+  border-bottom: 1px solid #C4C4C4;
+  width: 100%;
+}
+
+/* ProseMirror Style */
+
+.ProseMirror {
+  padding: 10px;
+  background: white;
+  border-radius: 0 0 5px 5px;
+  min-height: 150px;
+}
+.ProseMirror:focus {
+  border: none;
+  outline: none;
+}
+
+.ProseMirror > * + * {
+  margin-top: 0.75em;
+}
+
+/* Block Elements */
+.textEditor div {
+  display: block;
+}
+
+.textEditor p {
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.textEditor code {
+  background-color: rgba(#616161, 0.1);
+  color: inherit;
+  padding: 0;
+  font-size: 0.6rem;
+}
+
+.textEditor h1 {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 0.67rem;
+  margin-bottom: 0.67rem;
+  margin-left: 0;
+  margin-right: 0;
+}
+.textEditor h2 {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 0.83rem;
+  margin-bottom: 0.83rem;
+}
+.textEditor h3 {
+  display: block;
+  font-size: 1.17rem;
+  font-weight: bold;
+}
+.textEditor h4 {
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.textEditor h5 {
+  display: block;
+  font-size: 0.83rem;
+  font-weight: bold;
+}
+.textEditor h6 {
+  display: block;
+  font-size: 0.67rem;
+  font-weight: bold;
+}
+
+.textEditor ul {
+  display: block;
+  padding-left: 40px;
+  list-style-position: outside;
+  list-style-type: disc;
+}
+
+.textEditor ol {
+  display: block;
+  padding-left: 40px;
+  list-style-position: outside;
+  list-style-type: decimal;
+}
+
+.textEditor li {
+  display: list-item;
+}
+
+.textEditor blockquote {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 40px;
+  margin-right: 40px;
+  padding-left: 1rem;
+  border-left: 3px solid #999999;
+}
+
+.textEditor hr {
+  display: block;
+  border: none;
+  border-top: 1px solid silver;
+  margin: 0.5rem 0;
+  color: inherit;
+}
+
+/* Inline style */
+
+.textEditor span {
+  display: inline;
+}
+
+.textEditor a {
+  display: inline;
+  text-decoration: underline;
+  color: #006ba6;
+}
+
+.textEditor strong {
+  font-weight: bolder;
+}
+
+.textEditor b {
+  font-weight: bolder;
+}
+
+.textEditor em {
+  font-style: italic;
+}
+
+.textEditor i {
+  font-style: italic;
+}
+
+.textEditor img {
+  display: block;
+  max-width: 100%;
+  border: none;
+}
+
+/* Table Elements */
+
+.textEditor table {
+  display: table;
+  border-collapse: separate;
+  border-spacing: 2px;
+  border-color: gray;
+}
+
+.textEditor thead {
+  display: table-header-group;
+  vertical-align: middle;
+}
+
+.textEditor tbody {
+  display: table-header-group;
+  vertical-align: middle;
+}
+
+.textEditor tfoot {
+  display: table-header-group;
+  vertical-align: middle;
+}
+
+.textEditor tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+.textEditor th {
+  display: table-cell;
+  font-weight: bold;
+  text-align: center;
+  padding: 0.5em;
+}
+
+.textEditor td {
+  display: table-cell;
+  padding: 0.5em;
+  text-align: left;
+}

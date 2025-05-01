@@ -1,0 +1,132 @@
+// Extra small devices (less than 576px)
+@mixin media-breakpoint-only-xs {
+  @media (max-width: 575.98px) {
+    @content;
+  }
+}
+
+// Small devices (375px to 767px)
+@mixin media-breakpoint-only-sm {
+  @media (min-width: 375px) and (max-width: 767px) {
+    @content;
+  }
+}
+
+// Medium devices (768px to 1023px)
+@mixin media-breakpoint-only-md {
+  @media (min-width: 768px) and (max-width: 1023px) {
+    @content;
+  }
+}
+
+// Large devices (1024px to 1279px)
+@mixin media-breakpoint-only-lg {
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    @content;
+  }
+}
+
+// Extra large devices (1280px to 1535px)
+@mixin media-breakpoint-only-xl {
+  @media (min-width: 1280px) and (max-width: 1535px) {
+    @content;
+  }
+}
+
+// 2X large devices (1536px to 1999px)
+@mixin media-breakpoint-only-2xl {
+  @media (min-width: 1536px) and (max-width: 1999px) {
+    @content;
+  }
+}
+
+// 3X large devices (2000px and above)
+@mixin media-breakpoint-only-3xl {
+  @media (min-width: 2000px) {
+    @content;
+  }
+}
+
+// Below small devices (less than 576px)
+@mixin media-breakpoint-below-xs {
+  @media (max-width: 575.98px) {
+    @content;
+  }
+}
+
+// Below small to medium devices (less than 768px)
+@mixin media-breakpoint-below-sm {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+// Below medium to large devices (less than 1024px)
+@mixin media-breakpoint-below-md {
+  @media (max-width: 1023px) {
+    @content;
+  }
+}
+
+// Below large to extra large devices (less than 1280px)
+@mixin media-breakpoint-below-lg {
+  @media (max-width: 1279px) {
+    @content;
+  }
+}
+
+// Below extra large to 2X large devices (less than 1536px)
+@mixin media-breakpoint-below-xl {
+  @media (max-width: 1535px) {
+    @content;
+  }
+}
+
+// Below 2X large to 3X large devices (less than 2000px)
+@mixin media-breakpoint-below-2xl {
+  @media (max-width: 1999px) {
+    @content;
+  }
+}
+
+// Above small devices (greater than or equal to 576px)
+@mixin media-breakpoint-above-xs {
+  @media (min-width: 576px) {
+    @content;
+  }
+}
+
+// Above medium devices (greater than or equal to 768px)
+@mixin media-breakpoint-above-sm {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+// Above large devices (greater than or equal to 1024px)
+@mixin media-breakpoint-above-md {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+// Above extra large devices (greater than or equal to 1280px)
+@mixin media-breakpoint-above-lg {
+  @media (min-width: 1280px) {
+    @content;
+  }
+}
+
+// Above 2X large devices (greater than or equal to 1536px)
+@mixin media-breakpoint-above-xl {
+  @media (min-width: 1536px) {
+    @content;
+  }
+}
+
+// Above 3X large devices (greater than or equal to 2000px)
+@mixin media-breakpoint-above-2xl {
+  @media (min-width: 2000px) {
+    @content;
+  }
+}

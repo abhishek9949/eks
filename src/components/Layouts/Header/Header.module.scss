@@ -1,0 +1,9 @@
+.header {
+    border-bottom: 1px solid #DEDEDE;
+    min-height: 4rem;
+    position: fixed !important;
+
+    @media (min-width: 600px) {
+        min-height: 4rem !important;
+    }
+}

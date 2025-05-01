@@ -1,0 +1,49 @@
+@import "src/css/breakpoints.scss";
+.sidebar {
+  position: fixed;
+  height: 100%;
+  // overflow-y: auto;
+  padding-top: 5rem;
+  padding-right: 1.25rem;
+  width: 18.75rem !important;
+  z-index: 99;
+
+  @include media-breakpoint-below-lg {
+    background-color: white !important;
+  }
+}
+
+.mainContainer {
+  padding-top: 3.75rem;
+
+  @include media-breakpoint-below-md {
+    margin-left: 0 ;
+    padding-left: 0;
+  }
+  @include media-breakpoint-above-md {
+    margin-left: 18.75rem ;
+    padding-left: 1.25rem;
+  }
+}
+
+
+.menuIcon {
+  width: 1.75rem !important;
+  height: 1.75rem !important;
+
+
+  @include media-breakpoint-only-md {
+    .menuIcon {
+      width: 1.5rem !important;
+      height: 1.5rem !important;
+    }
+  }
+
+  @include media-breakpoint-only-sm {
+
+    .menuIcon {
+      width: 1.25rem !important;
+      height: 1.25rem !important;
+    }
+  }
+}

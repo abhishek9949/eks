@@ -1,0 +1,67 @@
+name: Dev-SecOps
+on:
+  push:
+    branches:
+      - Dev-SecOps
+  
+jobs:
+  Dependency-Track:
+    if: github.ref == 'refs/heads/Dev-SecOps'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install CycloneDX NPM Package
+        run: npm install --save-dev @cyclonedx/cyclonedx-npm
+
+      - name: Generate SBOM
+        run: npx cyclonedx-bom -o bom.xml
+
+      - name: Install Dependency-Track CLI
+        run: npm install @fjbarrena/dtrack-cli -g
+
+      - name: Upload SBOM to Dependency-Track
+        run: |
+          dtrack-cli \
+            --server ${{ secrets.DTRACK_SERVER }} \
+            --bom-path bom.xml \
+            --api-key ${{ secrets.DTRACK_APIKEY }} \
+            --project-name ${{ secrets.DTRACK_PROJECTNAME }} \
+            --project-version ${{ secrets.DTRACK_PROJECTVERSION }}
+
+  Coverage-and-SonarQube:
+    if: github.ref == 'refs/heads/Dev-SecOps'
+    needs: Dependency-Track
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests and generate coverage
+        run: npm test  # This will run tests and generate the coverage/lcov.info file
+
+      - name: Organize Coverage Report Files
+        run: mv coverage/lcov.info lcov.info && rm -rf coverage && mkdir coverage && mv lcov.info coverage/lcov.info
+
+      - name: Run SonarQube analysis
+        uses: SonarSource/sonarqube-scan-action@v4.2.1
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          
+      # If you wish to fail your job when the Quality Gate is red, uncomment the
+      # following lines. This would typically be used to fail a deployment.
+      - name: SonarQube Quality Gate
+        uses: sonarsource/sonarqube-quality-gate-action@v1
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

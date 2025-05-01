@@ -1,0 +1,18 @@
+
+  
+  .text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* Default to 3 lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.3s ease;
+  }
+  
+  .textExpanded {
+    -webkit-line-clamp: unset;
+    overflow: visible;
+    text-overflow: unset;
+  }
+  
+

@@ -1,0 +1,83 @@
+@import "@/css/folty.scss";
+
+/* Import Tailwind's base, components, and utilities */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer base {
+  body {
+    @apply relative z-1 bg-white font-satoshi text-base font-normal text-dark-1;
+  }
+}
+
+@layer utilities {
+
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+}
+
+input:focus-visible {
+  outline-offset: 0px;
+  outline-color: transparent;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  @apply font-satoshi;
+}
+
+/* Style the audio control panel */
+audio::-webkit-media-controls-panel {
+  background-color: #eff8fd;
+  /* Change to desired background color */
+}
+
+/* Style the progress bar (tracker) */
+audio::-webkit-media-controls-timeline {
+  background-color: #eff8fd;
+  /* Background of the tracker bar */
+}
+
+/* scrollbar */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  /* Ensures the horizontal scrollbar matches the height of the vertical scrollbar */
+}
+
+*::-webkit-scrollbar-track {
+  background-color: #e7e7e7;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #b3b3b3;
+  border-radius: 5px;
+}
+
+//text editor
+.ql-editor.ql-blank::before {
+  font-style: normal !important;
+  font-family: "Folty", sans-serif !important;
+  font-size: 1rem !important;
+  color: #8591a5 !important;
+}
+
+.ql-editor {
+  color: black !important;
+}
+// .react-tel-input {
+// position: absolute !important;
+// }

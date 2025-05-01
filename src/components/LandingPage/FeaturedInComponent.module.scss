@@ -1,0 +1,47 @@
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% / 2)); /* Move by half, since logos are duplicated */
+  }
+}
+
+.slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.slider::before,
+.slider::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+  top: 0;
+}
+
+.slider::before {
+  left: 0;
+  background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.slider::after {
+  right: 0;
+  background: linear-gradient(to left, white 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.slideTrack {
+  display: flex;
+  width: max-content;
+  animation: scroll 40s linear infinite;
+}
+
+.slide {
+  flex: 0 0 auto; /* Ensure dynamic width */
+  margin: 0 10px; /* Adds spacing */
+  display: flex;
+  align-items: center;
+}

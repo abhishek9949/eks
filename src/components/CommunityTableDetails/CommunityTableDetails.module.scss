@@ -1,0 +1,161 @@
+/* These css with .descStyle className added for default styling of the HTML tags which was overrided by @tailwind base   */
+
+/* Block Elements */
+.descStyle div {
+  display: block;
+}
+
+.descStyle p {
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.descStyle h1 {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 0.67rem;
+  margin-bottom: 0.67rem;
+  margin-left: 0;
+  margin-right: 0;
+}
+.descStyle h2 {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 0.83rem;
+  margin-bottom: 0.83rem;
+}
+.descStyle h3 {
+  display: block;
+  font-size: 1.17rem;
+  font-weight: bold;
+}
+.descStyle h4 {
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.descStyle h5 {
+  display: block;
+  font-size: 0.83rem;
+  font-weight: bold;
+}
+.descStyle h6 {
+  display: block;
+  font-size: 0.67rem;
+  font-weight: bold;
+}
+
+.descStyle ul {
+  display: block;
+  padding-left: 40px;
+  list-style-position: outside;
+  list-style-type: disc;
+}
+
+.descStyle ol {
+  display: block;
+  padding-left: 40px;
+  list-style-position: outside;
+  list-style-type: decimal;
+}
+
+.descStyle li {
+  display: list-item;
+}
+
+.descStyle blockquote {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 40px;
+  margin-right: 40px;
+  padding-left: 1rem;
+  border-left: 3px solid #999999;
+}
+
+.descStyle hr {
+  display: block;
+  border: none;
+  border-top: 1px solid silver;
+  margin: 0.5rem 0;
+  color: inherit;
+}
+
+/* Inline style */
+
+.descStyle span {
+  display: inline;
+}
+
+.descStyle a {
+  display: inline;
+  text-decoration: underline;
+  color: #006ba6;
+}
+
+.descStyle strong {
+  font-weight: bolder;
+}
+
+.descStyle b {
+  font-weight: bolder;
+}
+
+.descStyle em {
+  font-style: italic;
+}
+
+.descStyle i {
+  font-style: italic;
+}
+
+.descStyle code {
+  font-family: monospace;
+  font-size: 1em;
+}
+
+/* Table Elements */
+
+.descStyle table {
+  display: table;
+  border-collapse: separate;
+  border-spacing: 2px;
+  border-color: gray;
+}
+
+.descStyle thead {
+  display: table-header-group;
+  vertical-align: middle;
+}
+
+.descStyle tbody {
+  display: table-header-group;
+  vertical-align: middle;
+}
+
+.descStyle tfoot {
+  display: table-header-group;
+  vertical-align: middle;
+}
+
+.descStyle tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+.descStyle th {
+  display: table-cell;
+  font-weight: bold;
+  text-align: center;
+  padding: 0.5em;
+}
+
+.descStyle td {
+  display: table-cell;
+  padding: 0.5em;
+  text-align: left;
+}

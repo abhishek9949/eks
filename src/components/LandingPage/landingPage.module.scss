@@ -1,0 +1,64 @@
+.header {
+  border-bottom: 1px solid #DEDEDE;
+  padding: 1rem;
+  min-height: 4rem;
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+.hideScrollbar::-webkit-scrollbar {
+  display: none;
+  /* Hide scrollbar */
+}
+
+/* Hide scrollbar for Firefox */
+.hideScrollbar {
+  scrollbar-width: none;
+  /* Hide scrollbar */
+}
+
+@media (min-width: 425px) {
+  .header {
+    padding: 1rem 1.5rem 1rem 1.13rem;
+  }
+}
+
+@media (min-width: 600px) {
+  .header {
+    min-height: 4rem;
+  }
+}
+
+.footer {
+  $width: 100%;
+  $height: 15rem;
+
+  @mixin halfCircle($direction: bottom) {
+    @if $direction ==bottom {
+      border-radius: 0 0 50% 50% / 0 0 100% 100%;
+    }
+
+    @else {
+      @error 'Please set correct $direction value.';
+    }
+  }
+
+  .footerSpace{
+    background-color: #F2FAFF;
+    padding-top: 2rem;
+  }
+  
+  .halfCircle {
+    padding-bottom: 5rem;
+    background-color: #F2FAFF;
+    display: inline-block;
+    overflow: hidden;
+    width: $width;
+    height: $height;
+
+    &.horizontal {
+      &.bottom {
+        @include halfCircle(bottom);
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+@import "src/css/breakpoints.scss";
+
+// Search Bar Styles
+.searchBar {
+    width: 17.45rem;
+    margin-left: 0rem;
+
+    // Large screen styles
+    @include media-breakpoint-only-lg {
+        width: 27rem;
+        margin-left: 6rem;
+    }
+
+    // Extra large screen styles
+    @include media-breakpoint-above-lg {
+        width: 33rem;
+        margin-left: 6rem;
+    }
+    @include media-breakpoint-below-md {
+        margin-bottom: 1rem;
+    }
+}
+
+// Border Checkbox Styles
+.borderCheckbox {
+    @apply border-r border-gray-1;
+}

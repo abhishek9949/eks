@@ -1,0 +1,19 @@
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+
+# package-lock.json
+package-lock.json
+
+# vscode
+.vscode
+
+# env
+.env
+
+#jest unit test case
+coverage/
+
+tsconfig.tsbuildinfo

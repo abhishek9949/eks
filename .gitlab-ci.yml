@@ -1,0 +1,111 @@
+image: docker:latest
+# services:
+#   - name: docker:24.0.5-dind
+#     command: ["--host=unix:///var/run/docker.sock"]
+#     variables:
+#       DOCKER_TLS_CERTDIR: "" 
+
+variables:
+  # DOCKER_HOST: "tcp://docker:2375"  # Communicate with the DinD service
+  DOCKER_HOST: "unix:///var/run/docker.sock"  # Communicate with the Docker host
+  DOCKER_DRIVER: overlay2 
+  SPRING_PROFILES_ACTIVE: gitlab-ci 
+  SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"
+  # GIT_DEPTH: "0" #checkout code to scan from all branches
+ 
+
+.retry_job: &retry_job
+  retry:
+    max: 1
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
+stages:
+
+  - Package
+  - Deploy
+  - SonarQube
+
+# -------------------------------------------------------------------------------------------------------------------------------------
+
+Package_Stage(Dev_Server):
+  stage: Package
+  image: docker:latest
+  before_script:
+    - docker logout
+    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD $DOCKER_REGISTRY
+    # Delete existing Docker image from runner server
+    - docker images -q repos.sakhaglobal.com:4567/the-teachers-table/frontend/frontend/dev | xargs -r docker rmi -f
+  script:
+    - docker build -t repos.sakhaglobal.com:4567/the-teachers-table/frontend/frontend/dev:latest .
+    - docker push repos.sakhaglobal.com:4567/the-teachers-table/frontend/frontend/dev:latest
+  only:
+    - dev
+  tags:
+    - teacher-table-frontend
+
+  <<: *retry_job
+
+# -------------------------------------------------------------------------------------------------------------------------------------
+
+Deploy_Stage(Dev_Server):
+  stage: Deploy
+  image: ubuntu:latest
+  before_script:
+    - apt-get update -y
+    - apt-get install -y sshpass
+    # SSH Setup
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh  # Secure the .ssh directory
+    - echo "$DEV_SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa  # Add private key from environment variable
+    - chmod 600 ~/.ssh/id_rsa  # Ensure the private key is secure
+    - eval "$(ssh-agent -s)"  # Start the SSH agent
+    - ssh-agent sh -c 'ssh-add ~/.ssh/id_rsa'  # Add the private key to the SSH agent
+    - ssh-keyscan -H $DEV_SERVER >> ~/.ssh/known_hosts  # Add the server's SSH key to known_hosts
+
+  script:
+    # Stop the running frontend container
+    - ssh $DEV_SSH_USER@$DEV_SERVER "docker ps -q -f name=frontend-teachertable | grep -q . && docker stop frontend-teachertable || echo 'Container frontend-teachertable not found, skipping stop step.'"
+    # Remove the frontend container if it exists
+    - ssh $DEV_SSH_USER@$DEV_SERVER "if [ \$(docker ps -a -q -f name=frontend-teachertable) ]; then docker rm frontend-teachertable; else echo 'Container does not exist'; fi"
+    # Delete existing Docker images for the frontend
+    - ssh $DEV_SSH_USER@$DEV_SERVER "docker images -q repos.sakhaglobal.com:4567/the-teachers-table/frontend/frontend/dev | xargs -r docker rmi -f"
+    # Pull the new frontend Docker image to the server
+    - ssh $DEV_SSH_USER@$DEV_SERVER "docker pull repos.sakhaglobal.com:4567/the-teachers-table/frontend/frontend/dev:latest"
+    # Start the new frontend container
+    - ssh $DEV_SSH_USER@$DEV_SERVER "docker run -itd --net=host --name frontend-teachertable repos.sakhaglobal.com:4567/the-teachers-table/frontend/frontend/dev:latest"
+  only:
+    - dev
+  # when: manual
+  tags:
+    - teacher-table-frontend
+
+  <<: *retry_job
+
+# -------------------------------------------------------------------------------------------------------------------------------------
+
+sonarqube-check(Dev_Server):
+  image: 
+    name: sonarsource/sonar-scanner-cli:10.0
+    entrypoint: [""]
+  stage: SonarQube
+  dependencies:
+  cache:
+    policy: pull
+    key: "${CI_COMMIT_SHORT_SHA}"
+    paths:
+      - sonar-scanner/
+  script: 
+    - sonar-scanner -Dsonar.projectKey="${SONAR_PROJECT_KEY}" -Dsonar.qualitygate.wait=false -Dsonar.token="${SONAR_TOKEN}" -Dsonar.host.url="${SONAR_HOST_URL}" -Dsonar.scm.exclusions.disabled=true
+  allow_failure: true
+  only:
+    - dev
+  tags:
+    - teacher-table-frontend
+
+  <<: *retry_job 
+
+
+  
+
+

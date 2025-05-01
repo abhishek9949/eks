@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CourseTag Component renders correctly and matches snapshot 1`] = `
+<div>
+  <div
+    class="flex gap-1 flex-wrap"
+  >
+    <div
+      class="text-center"
+    >
+      <span
+        class="font-normal text-base text-primary"
+      >
+        #
+        Tag1
+      </span>
+    </div>
+    <div
+      class="text-center"
+    >
+      <span
+        class="font-normal text-base text-primary"
+      >
+        #
+        Tag2
+      </span>
+    </div>
+  </div>
+</div>
+`;

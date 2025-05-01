@@ -1,0 +1,34 @@
+.draggableContainer {
+    --columns: 1;
+    --gap: 1rem;
+    display: flex;
+    gap: var(--gap);
+  }
+  
+  @media (min-width: 768px) { /* Tablet */
+    .draggableContainer {
+      --columns: 2; /* Matches col-span-6 */
+      --gap: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) { /* Laptop */
+    .draggableContainer {
+      --columns: 3; /* Matches col-span-4 */
+      --gap: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 1280px) { /* Desktop */
+    .draggableContainer {
+      --columns: 4; /* Matches col-span-3 */
+      --gap: 1.75rem;
+    }
+  }
+  
+  /* Ensure each card takes up correct width */
+  .draggableItem {
+    flex: 0 0 calc((100% - (var(--gap) * (var(--columns) - 1))) / var(--columns));
+    scroll-snap-align: start;
+  }
+  
